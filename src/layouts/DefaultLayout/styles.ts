@@ -10,7 +10,9 @@ export const LayoutContainer = styled.div`
 
   align-items: center;
 
-  padding: 1rem;
-
   background: ${(props) => props.theme.background};
+
+  @media (max-width: 768px) {
+    padding: 1rem;
+  }
 `

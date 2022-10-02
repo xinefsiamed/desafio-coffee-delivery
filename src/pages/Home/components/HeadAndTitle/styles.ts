@@ -24,6 +24,12 @@ export const ArticleContainer = styled.article`
 
     font-stretch: 100;
   }
+
+  @media (max-width: 1040px) {
+    img {
+      display: none;
+    }
+  }
 `
 
 export const TitleAndSubtitle = styled.div`
@@ -51,6 +57,10 @@ export const ItemContainer = styled.li`
 
   align-items: center;
   gap: 0.75rem;
+
+  @media (max-width: 768px) {
+    flex: 1 0 100%;
+  }
 `
 
 const BACKGROUND_ITEM_COLOR = {
