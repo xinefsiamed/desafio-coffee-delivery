@@ -2,7 +2,6 @@ import styled from 'styled-components'
 
 export const LayoutContainer = styled.div`
   max-width: 90rem;
-  height: 100vh;
 
   margin: 0 auto;
   display: flex;
@@ -12,7 +11,11 @@ export const LayoutContainer = styled.div`
 
   background: ${(props) => props.theme.background};
 
-  @media (max-width: 768px) {
+  @media (max-width: 1140px) {
     padding: 1rem;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 83.4%;
   }
 `
