@@ -1,4 +1,4 @@
-import coffeDeliveryImage from '../../../../assets/coffeDeliveryImage.svg'
+import coffeeDeliveryImage from '../../../../assets/coffeDeliveryImage.svg'
 import { Coffee, Package, ShoppingCartSimple, Timer } from 'phosphor-react'
 import {
   ArticleContainer,
@@ -51,7 +51,7 @@ export function HeadAndTitle() {
           </ItemContainer>
         </ArticleFooter>
       </ArticleContent>
-      <img src={coffeDeliveryImage} alt="Um copo de café com grãos ao lado" />
+      <img src={coffeeDeliveryImage} alt="Um copo de café com grãos ao lado" />
     </ArticleContainer>
   )
 }

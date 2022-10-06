@@ -8,7 +8,7 @@ export function Header() {
   return (
     <HeaderDiv>
       <HeaderContainer>
-        <img src={Logo} alt="Logo do Coffe Delivery" />
+        <img src={Logo} alt="Logo do Coffee Delivery" />
 
         <nav>
           <NavLink to="/" title="Localização">
