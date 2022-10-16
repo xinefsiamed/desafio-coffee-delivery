@@ -1,24 +1,27 @@
-import { createContext, ReactNode, useReducer } from 'react'
-import { coffeesReducer, ICoffee } from '../reducers/Coffees/reducers'
+import { createContext, ReactNode, useEffect, useState } from 'react'
+import { ICoffee } from '../reducers/Coffees/reducers'
+import { coffeesDB } from '../db/coffeesDB'
 
-interface IShoppingCartType {
-  coffees: ICoffee[]
+interface ICoffeesType {
+  coffeeState: ICoffee[]
 }
 
-export const ShoppingCartContext = createContext({} as IShoppingCartType)
+export const CoffeesContext = createContext({} as ICoffeesType)
 
-interface IShoppingCartContextProps {
+interface ICoffeesContext {
   children: ReactNode
 }
 
-export function ShoppingCartContextProvider({
-  children,
-}: IShoppingCartContextProps) {
-  const [coffeesState, dispatch] = useReducer(coffeesReducer, {
-    coffees: [],
-  })
+export function CoffeesContextProvider({ children }: ICoffeesContext) {
+  const [coffeeState, setCoffeeState] = useState<any[]>([])
 
-  const { coffees } = coffeesState
+  useEffect(() => {
+    setCoffeeState(coffeesDB)
+  }, [])
 
-  return <ShoppingCartContextProvider>{children}</ShoppingCartContextProvider>
+  return (
+    <CoffeesContext.Provider value={{ coffeeState }}>
+      {children}
+    </CoffeesContext.Provider>
+  )
 }

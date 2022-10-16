@@ -1,3 +1,5 @@
+import { useContext } from 'react'
+import { CoffeesContext } from '../../contexts/ShoppingCartContext'
 import { CardCoffee } from './components/CardCoffee'
 import { HeadAndTitle } from './components/HeadAndTitle'
 
@@ -9,6 +11,8 @@ import {
 } from './styles'
 
 export function Home() {
+  const { coffeeState } = useContext(CoffeesContext)
+
   return (
     <ContentContainer>
       <HeadlineSection>
@@ -19,17 +23,16 @@ export function Home() {
         <h2>Nossos Cafés</h2>
 
         <CoffeesContainer>
-          <CardCoffee />
-          <CardCoffee />
-          <CardCoffee />
-          <CardCoffee />
-          <CardCoffee />
-          <CardCoffee />
-          <CardCoffee />
-          <CardCoffee />
-          <CardCoffee />
-          <CardCoffee />
-          <CardCoffee />
+          {coffeeState.map((coffee) => (
+            <CardCoffee
+              key={coffee.id}
+              img={coffee.img}
+              description={coffee.description}
+              name={coffee.name}
+              price={coffee.price}
+              tags={coffee.tags}
+            />
+          ))}
         </CoffeesContainer>
       </CoffeesSection>
     </ContentContainer>

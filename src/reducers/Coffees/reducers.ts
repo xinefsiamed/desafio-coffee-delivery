@@ -1,16 +1,14 @@
 import { produce } from 'immer'
 import { ActionTypes } from './actions'
 
-type Tags = {
-  name: 'TRADICIONAL' | 'COM LEITE' | 'GELADO' | 'ALCOÓLICO' | 'ESPECIAL'
-}
-
 export interface ICoffee {
+  id: number
   img: any
-  tags: Tags[]
+  name: string
+  tags: string[]
   description: string
   price: number
-  quantity: number
+  quantity?: number
 }
 
 interface ICoffeesState {
