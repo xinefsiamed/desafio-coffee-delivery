@@ -23,5 +23,8 @@ export function coffeesReducer(state: ICoffeesState, action: any) {
       return produce(state, (draft) => {
         draft.coffees.push(action.payload.newProduct)
       })
+
+    default:
+      return state
   }
 }
