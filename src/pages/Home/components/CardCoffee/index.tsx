@@ -1,4 +1,5 @@
 import { Minus, Plus, ShoppingCartSimple } from 'phosphor-react'
+import { useState } from 'react'
 
 import {
   CardTitleDescription,
@@ -9,6 +10,7 @@ import {
 } from './styles'
 
 interface ICardCoffeeProps {
+  id: number
   img: string
   name: string
   tags: string[]
@@ -17,12 +19,29 @@ interface ICardCoffeeProps {
 }
 
 export function CardCoffee({
+  id,
   img,
   name,
   tags,
   description,
   price,
 }: ICardCoffeeProps) {
+  const [quantity, setQuantity] = useState(1)
+
+  function handleDecreaseQuantityButton() {
+    event?.preventDefault()
+
+    if (!(quantity <= 1)) {
+      setQuantity(quantity - 1)
+    }
+  }
+
+  function handleEncreaseQuantityButton() {
+    event?.preventDefault()
+
+    setQuantity(quantity + 1)
+  }
+
   return (
     <CoffeeCard>
       <img src={img} alt="" />
@@ -42,17 +61,26 @@ export function CardCoffee({
       </CardTitleDescription>
 
       <footer>
-        <Price>{price}</Price>
+        <Price>{price.toFixed(2)}</Price>
 
         <CounterAndButton>
-          <div>
-            <Minus width={14} weight="bold" /> 1{' '}
-            <Plus width={14} weight="bold" />
-          </div>
+          <form>
+            <div>
+              <button onClick={handleDecreaseQuantityButton}>
+                <Minus width={14} weight="bold" />
+              </button>
 
-          <button>
-            <ShoppingCartSimple weight="fill" />
-          </button>
+              {quantity}
+
+              <button onClick={handleEncreaseQuantityButton}>
+                <Plus width={14} weight="bold" />
+              </button>
+            </div>
+
+            <button type="submit">
+              <ShoppingCartSimple weight="fill" />
+            </button>
+          </form>
         </CounterAndButton>
       </footer>
     </CoffeeCard>

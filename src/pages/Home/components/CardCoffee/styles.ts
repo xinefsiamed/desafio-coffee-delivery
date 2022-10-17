@@ -83,54 +83,65 @@ export const CardTitleDescription = styled.div`
   }
 `
 export const CounterAndButton = styled.div`
-  display: flex;
-
-  gap: 0.5rem;
-
-  div {
+  form {
     display: flex;
-    justify-content: center;
-    align-items: center;
 
-    border-radius: 6px;
+    gap: 0.5rem;
 
-    padding: 0.5rem;
-    gap: 0.25rem;
+    div {
+      display: flex;
+      justify-content: center;
+      align-items: center;
 
-    background: ${(props) => props.theme['base-button']};
+      border-radius: 6px;
 
-    svg {
-      color: ${(props) => props.theme.purple};
+      padding: 0.5rem;
+      gap: 0.25rem;
+
+      background: ${(props) => props.theme['base-button']};
+
+      svg {
+        color: ${(props) => props.theme.purple};
+        cursor: pointer;
+      }
+
+      svg:hover {
+        color: ${(props) => props.theme['purple-dark']};
+      }
+
+      button {
+        border: none;
+        background-color: transparent;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+
+    button[type='submit'] {
+      display: flex;
+
+      justify-content: center;
+      align-items: center;
+
+      padding: 0.5rem;
+
+      border: 0;
+      border-radius: 6px;
+
+      background-color: ${(props) => props.theme['purple-dark']};
+      transition: background 0.1s;
+
       cursor: pointer;
-    }
 
-    svg:hover {
-      color: ${(props) => props.theme['purple-dark']};
-    }
-  }
+      svg {
+        color: ${(props) => props.theme['base-card']};
+      }
 
-  button {
-    display: flex;
-
-    justify-content: center;
-    align-items: center;
-
-    padding: 0.5rem;
-
-    border: 0;
-    border-radius: 6px;
-
-    background-color: ${(props) => props.theme['purple-dark']};
-    transition: background 0.1s;
-
-    cursor: pointer;
-
-    svg {
-      color: ${(props) => props.theme['base-card']};
-    }
-
-    &:hover {
-      background-color: ${(props) => props.theme.purple};
+      &:hover {
+        background-color: ${(props) => props.theme.purple};
+      }
     }
   }
 `

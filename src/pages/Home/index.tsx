@@ -26,6 +26,7 @@ export function Home() {
           {coffeeState.map((coffee) => (
             <CardCoffee
               key={coffee.id}
+              id={coffee.id}
               img={coffee.img}
               description={coffee.description}
               name={coffee.name}
