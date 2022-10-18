@@ -11,15 +11,15 @@ export interface ICoffee {
   quantity?: number
 }
 
-interface ICoffeesState {
-  coffees: ICoffee[]
+interface ICoffeesCartState {
+  coffeesCart: ICoffee[]
 }
 
-export function coffeesReducer(state: ICoffeesState, action: any) {
+export function coffeesCartReducer(state: ICoffeesCartState, action: any) {
   switch (action.type) {
     case ActionTypes.ADD_NEW_PRODUCT:
       return produce(state, (draft) => {
-        draft.coffees.push(action.payload.newProduct)
+        draft.coffeesCart.push(action.payload.newProduct)
       })
 
     default:

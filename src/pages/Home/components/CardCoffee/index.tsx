@@ -1,5 +1,6 @@
 import { Minus, Plus, ShoppingCartSimple } from 'phosphor-react'
-import { useState } from 'react'
+import React, { useContext, useState } from 'react'
+import { CoffeesContext } from '../../../../contexts/ShoppingCartContext'
 
 import {
   CardTitleDescription,
@@ -28,7 +29,17 @@ export function CardCoffee({
 }: ICardCoffeeProps) {
   const [quantity, setQuantity] = useState(1)
 
-  function handleDecreaseQuantityButton() {
+  const { insertNewCoffeeInCart } = useContext(CoffeesContext)
+
+  function handleCoffeeSubmitForm() {
+    event?.preventDefault()
+
+    insertNewCoffeeInCart({ id, quantity })
+  }
+
+  function handleDecreaseQuantityButton(
+    event: React.MouseEvent<HTMLButtonElement>,
+  ) {
     event?.preventDefault()
 
     if (!(quantity <= 1)) {
@@ -36,7 +47,9 @@ export function CardCoffee({
     }
   }
 
-  function handleEncreaseQuantityButton() {
+  function handleEncreaseQuantityButton(
+    event: React.MouseEvent<HTMLButtonElement>,
+  ) {
     event?.preventDefault()
 
     setQuantity(quantity + 1)
@@ -64,7 +77,7 @@ export function CardCoffee({
         <Price>{price.toFixed(2)}</Price>
 
         <CounterAndButton>
-          <form>
+          <form onSubmit={handleCoffeeSubmitForm}>
             <div>
               <button onClick={handleDecreaseQuantityButton}>
                 <Minus width={14} weight="bold" />
