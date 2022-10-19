@@ -57,7 +57,7 @@ export function CardCoffee({
     }
   }
 
-  function handleEncreaseQuantityButton(
+  function handleIncreaseQuantityButton(
     event: React.MouseEvent<HTMLButtonElement>,
   ) {
     event.preventDefault()
@@ -95,7 +95,7 @@ export function CardCoffee({
 
               {quantity}
 
-              <button onClick={handleEncreaseQuantityButton}>
+              <button onClick={handleIncreaseQuantityButton}>
                 <Plus width={14} weight="bold" />
               </button>
             </div>
