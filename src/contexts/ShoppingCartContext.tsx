@@ -10,8 +10,7 @@ import { coffeesDB } from '../db/coffeesDB'
 import { addNewProduct } from '../reducers/Coffees/actions'
 
 interface IInsertNewCoffeInCartData {
-  id: number
-  quantity: number
+  coffeeToAdd: ICoffee
 }
 
 interface ICoffeesType {
@@ -41,13 +40,11 @@ export function CoffeesContextProvider({ children }: ICoffeesContext) {
   const { coffeesCart } = coffeesCartState
 
   function insertNewCoffeeInCart(data: IInsertNewCoffeInCartData) {
-    const coffeeProduct = coffeeState.find(
-      (product) => product.id === data.id,
-    ) as ICoffee
+    const newProduct = data.coffeeToAdd
 
-    coffeeProduct.quantity = data.quantity
+    console.log(newProduct)
 
-    dispatch(addNewProduct(coffeeProduct))
+    dispatch(addNewProduct(newProduct))
   }
 
   return (

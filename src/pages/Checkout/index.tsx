@@ -4,5 +4,5 @@ import { CoffeesContext } from '../../contexts/ShoppingCartContext'
 export function Checkout() {
   const { coffeesCart } = useContext(CoffeesContext)
 
-  return <h1>{JSON.stringify(coffeesCart)}</h1>
+  return <pre>{JSON.stringify(coffeesCart)}</pre>
 }
