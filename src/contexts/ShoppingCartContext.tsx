@@ -1,12 +1,6 @@
-import {
-  createContext,
-  ReactNode,
-  useEffect,
-  useReducer,
-  useState,
-} from 'react'
+import { createContext, ReactNode, useReducer } from 'react'
 import { coffeesCartReducer, ICoffee } from '../reducers/Coffees/reducers'
-import { coffeesDB } from '../db/coffeesDB'
+
 import { addNewProduct } from '../reducers/Coffees/actions'
 
 interface IInsertNewCoffeInCartData {
@@ -14,7 +8,6 @@ interface IInsertNewCoffeInCartData {
 }
 
 interface ICoffeesType {
-  coffeeState: ICoffee[]
   coffeesCart: ICoffee[]
 
   insertNewCoffeeInCart: (data: IInsertNewCoffeInCartData) => void
@@ -27,12 +20,6 @@ interface ICoffeesContext {
 }
 
 export function CoffeesContextProvider({ children }: ICoffeesContext) {
-  const [coffeeState, setCoffeeState] = useState<ICoffee[]>([])
-
-  useEffect(() => {
-    setCoffeeState(coffeesDB)
-  }, [])
-
   const [coffeesCartState, dispatch] = useReducer(coffeesCartReducer, {
     coffeesCart: [],
   })
@@ -42,15 +29,11 @@ export function CoffeesContextProvider({ children }: ICoffeesContext) {
   function insertNewCoffeeInCart(data: IInsertNewCoffeInCartData) {
     const newProduct = data.coffeeToAdd
 
-    console.log(newProduct)
-
     dispatch(addNewProduct(newProduct))
   }
 
   return (
-    <CoffeesContext.Provider
-      value={{ coffeeState, coffeesCart, insertNewCoffeeInCart }}
-    >
+    <CoffeesContext.Provider value={{ coffeesCart, insertNewCoffeeInCart }}>
       {children}
     </CoffeesContext.Provider>
   )

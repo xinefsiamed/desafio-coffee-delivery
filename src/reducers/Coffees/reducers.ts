@@ -5,10 +5,8 @@ export interface ICoffee {
   id: number
   img: any
   name: string
-  tags: string[]
-  description: string
   price: number
-  quantity?: number
+  quantity: number
 }
 
 interface ICoffeesCartState {
@@ -22,8 +20,6 @@ export function coffeesCartReducer(state: ICoffeesCartState, action: any) {
         const coffeeAlreadyExistsId = draft.coffeesCart.findIndex(
           (coffee) => coffee.id === action.payload.newProduct.id,
         )
-
-        console.log(coffeeAlreadyExistsId)
 
         if (coffeeAlreadyExistsId >= 0) {
           draft.coffeesCart[coffeeAlreadyExistsId].quantity +=

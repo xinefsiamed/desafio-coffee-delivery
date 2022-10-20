@@ -1,5 +1,5 @@
-import { useContext } from 'react'
-import { CoffeesContext } from '../../contexts/ShoppingCartContext'
+import { useEffect, useState } from 'react'
+import { coffeesDB } from '../../db/coffeesDB'
 import { CardCoffee } from './components/CardCoffee'
 import { HeadAndTitle } from './components/HeadAndTitle'
 
@@ -11,7 +11,11 @@ import {
 } from './styles'
 
 export function Home() {
-  const { coffeeState } = useContext(CoffeesContext)
+  const [coffeeState, setCoffeeState] = useState<any[]>([])
+
+  useEffect(() => {
+    setCoffeeState(coffeesDB)
+  }, [])
 
   return (
     <ContentContainer>

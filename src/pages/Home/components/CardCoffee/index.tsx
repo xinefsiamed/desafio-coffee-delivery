@@ -37,7 +37,6 @@ export function CardCoffee({
 
     const newCoffeeToAdd = {
       id,
-      description,
       img,
       name,
       price,
