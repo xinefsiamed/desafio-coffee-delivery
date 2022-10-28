@@ -20,11 +20,22 @@ export function FormInputs() {
         id="cep"
         minLength={8}
         maxLength={8}
-        {...register('cep')}
+        {...register('cep', { valueAsNumber: true })}
+        required
       />
       <Break />
-      <StreetInput placeholder="Rua" id="street" {...register('street')} />
-      <NumberInput placeholder="Número" id="number" {...register('number')} />
+      <StreetInput
+        placeholder="Rua"
+        id="street"
+        {...register('street')}
+        required
+      />
+      <NumberInput
+        placeholder="Número"
+        id="number"
+        {...register('number', { valueAsNumber: true })}
+        required
+      />
       <ComplementInput
         placeholder="Complemento"
         id="complement"
@@ -34,9 +45,15 @@ export function FormInputs() {
         placeholder="Bairro"
         id="district"
         {...register('district')}
+        required
       />
-      <CityInput placeholder="Cidade" id="city" {...register('city')} />
-      <UFInput placeholder="UF" id="uf" {...register('uf')} />
+      <CityInput
+        placeholder="Cidade"
+        id="city"
+        {...register('city')}
+        required
+      />
+      <UFInput placeholder="UF" id="uf" {...register('uf')} required />
     </Inputs>
   )
 }

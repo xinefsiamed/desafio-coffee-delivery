@@ -61,3 +61,75 @@ export const PaymentMethodHeader = styled(baseCardHeader)`
     color: ${(props) => props.theme.purple};
   }
 `
+export const PaymentMethodButtons = styled.div`
+  display: flex;
+  justify-content: space-between;
+
+  margin-top: 2rem;
+
+  .selected {
+    background-color: ${(props) => props.theme['purple-light']};
+    border: 1px solid ${(props) => props.theme.purple};
+  }
+
+  button {
+    padding: 1rem;
+
+    text-transform: uppercase;
+    font-size: 0.75rem;
+
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+
+    border: none;
+    border-radius: 6px;
+
+    background-color: ${(props) => props.theme['base-button']};
+
+    transition: backgroud 0.2s;
+
+    min-width: 11rem;
+
+    svg {
+      color: ${(props) => props.theme.purple};
+    }
+
+    &:hover {
+      background-color: ${(props) => props.theme['base-hover']};
+    }
+  }
+`
+
+export const SelectedCoffeesList = styled.div`
+  margin-top: 1rem;
+  border-radius: 6px 44px;
+  padding: 2.5rem;
+
+  display: flex;
+  flex-direction: column;
+
+  background-color: ${(props) => props.theme['base-card']};
+
+  button[type='submit'] {
+    padding: 0.75rem;
+
+    text-transform: uppercase;
+    border: none;
+
+    background-color: ${(props) => props.theme.yellow};
+    color: ${(props) => props.theme.white};
+
+    font-weight: 700;
+    font-stretch: 100;
+    line-height: 160%;
+
+    border-radius: 6px;
+
+    transition: all 0.1s;
+
+    &:hover {
+      background-color: ${(props) => props.theme['yellow-dark']};
+    }
+  }
+`
