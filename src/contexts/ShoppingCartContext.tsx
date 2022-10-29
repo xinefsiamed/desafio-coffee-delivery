@@ -5,6 +5,7 @@ import {
   addNewProduct,
   DecreaseOneFromProduct,
   IncreaseOneFromProduct,
+  RemoveCoffeeFromCart,
   TotalProductsInCart,
 } from '../reducers/Coffees/actions'
 
@@ -19,6 +20,7 @@ interface ICoffeesType {
   insertNewCoffeeInCart: (data: IInsertNewCoffeInCartData) => void
   decreaseOneFromCoffee: (id: number) => void
   increaseOneFromCoffee: (id: number) => void
+  removeCoffeeFromCart: (id: number) => void
 }
 
 export const CoffeesContext = createContext({} as ICoffeesType)
@@ -42,6 +44,8 @@ export function CoffeesContextProvider({ children }: ICoffeesContext) {
         .reduce((coffee, nextCoffee) => coffee + nextCoffee)
 
       dispatch(TotalProductsInCart(totalCoffeesAmount))
+    } else {
+      dispatch(TotalProductsInCart(0))
     }
   }, [coffeesCart])
 
@@ -59,6 +63,10 @@ export function CoffeesContextProvider({ children }: ICoffeesContext) {
     dispatch(IncreaseOneFromProduct(id))
   }
 
+  function removeCoffeeFromCart(id: number) {
+    dispatch(RemoveCoffeeFromCart(id))
+  }
+
   return (
     <CoffeesContext.Provider
       value={{
@@ -67,6 +75,7 @@ export function CoffeesContextProvider({ children }: ICoffeesContext) {
         insertNewCoffeeInCart,
         decreaseOneFromCoffee,
         increaseOneFromCoffee,
+        removeCoffeeFromCart,
       }}
     >
       {children}

@@ -61,6 +61,13 @@ export function coffeesCartReducer(state: ICoffeesCartState, action: any) {
         }
       })
 
+    case ActionTypes.REMOVE_PRODUCT_FROM_CART:
+      return produce(state, (draft) => {
+        draft.coffeesCart = draft.coffeesCart.filter(
+          (coffee) => coffee.id !== action.payload.id,
+        )
+      })
+
     default:
       return state
   }

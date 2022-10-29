@@ -1,5 +1,5 @@
 import { Minus, Plus, Trash } from 'phosphor-react'
-import { useContext } from 'react'
+import React, { useContext } from 'react'
 import { CoffeesContext } from '../../../../contexts/ShoppingCartContext'
 import { Card, CardFooter, CoffeCardContainer, NameAndPrice } from './styles'
 
@@ -18,17 +18,22 @@ export function CoffeeCard({
   price,
   quantity,
 }: ICoffeeCardProps) {
-  const { decreaseOneFromCoffee, increaseOneFromCoffee } =
+  const { decreaseOneFromCoffee, increaseOneFromCoffee, removeCoffeeFromCart } =
     useContext(CoffeesContext)
 
-  function handleMinusOnClick(event) {
+  function handleMinusOnClick(event: React.MouseEvent<HTMLElement>) {
     event.preventDefault()
     decreaseOneFromCoffee(id)
   }
 
-  function handlePlusOnClick(event) {
+  function handlePlusOnClick(event: React.MouseEvent<HTMLElement>) {
     event.preventDefault()
     increaseOneFromCoffee(id)
+  }
+
+  function handleRemoveOnClick(event: React.MouseEvent<HTMLElement>) {
+    event.preventDefault()
+    removeCoffeeFromCart(id)
   }
 
   return (
@@ -51,7 +56,7 @@ export function CoffeeCard({
             </button>
           </div>
 
-          <div>
+          <div onClick={handleRemoveOnClick}>
             <button>
               <Trash size={16} />
               REMOVER

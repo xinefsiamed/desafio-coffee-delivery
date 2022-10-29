@@ -6,6 +6,7 @@ export enum ActionTypes {
   TOTAL_PRODUCTS_IN_CART = 'TOTAL_PRODUCTS_IN_CART',
   DECREASE_ONE_FROM_PRODUCT = 'DECREASE_ONE_FROM_PRODUCT',
   INCREASE_ONE_FROM_PRODUCT = 'INCREASE_ONE_FROM_PRODUCT',
+  REMOVE_PRODUCT_FROM_CART = 'REMOVE_PRODUCT_FROM_CART',
 }
 
 export function addNewProduct(newProduct: ICoffee) {
@@ -38,6 +39,15 @@ export function DecreaseOneFromProduct(id: number) {
 export function IncreaseOneFromProduct(id: number) {
   return {
     type: ActionTypes.INCREASE_ONE_FROM_PRODUCT,
+    payload: {
+      id,
+    },
+  }
+}
+
+export function RemoveCoffeeFromCart(id: number) {
+  return {
+    type: ActionTypes.REMOVE_PRODUCT_FROM_CART,
     payload: {
       id,
     },

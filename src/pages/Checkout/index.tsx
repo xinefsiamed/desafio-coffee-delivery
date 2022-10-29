@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 import * as zod from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -14,6 +14,7 @@ import {
   PaymentMethodHeader,
   PaymentMethodButtons,
   SelectedCoffeesList,
+  EmptyCoffeeList,
 } from './styles'
 import {
   Bank,
@@ -21,6 +22,7 @@ import {
   CurrencyDollar,
   MapPinLine,
   Money,
+  SmileySad,
 } from 'phosphor-react'
 import { FormInputs } from './components/FormInputs'
 import { CoffeeCard } from './components/CoffeeCard'
@@ -61,17 +63,17 @@ export function Checkout() {
 
   const [buttonSelected, setButtonSelected] = useState('')
 
-  function HandlePaymentButtonOnClick(event) {
+  function HandlePaymentButtonOnClick(event: React.MouseEvent<HTMLElement>) {
     event.preventDefault()
 
-    setButtonSelected(event.target.id)
+    setButtonSelected((event.target as HTMLElement).id)
 
-    const value = event.target.value
+    const value = (event.target as HTMLTextAreaElement).value
 
     setValue('paymentMethod', value)
   }
 
-  const formsinput = watch([
+  const formsInput = watch([
     'street',
     'cep',
     'number',
@@ -80,11 +82,11 @@ export function Checkout() {
     'paymentMethod',
   ])
 
-  const isSubmitDisable = !formsinput
+  const isCoffeesCartEmpty = coffeesCart.length === 0
+
+  const isSubmitDisable = !formsInput
     .map((el) => Boolean(el))
     .reduce((el, nextEl) => el && nextEl)
-
-  console.log(coffeesCart)
 
   return (
     <CheckoutContainer>
@@ -155,16 +157,23 @@ export function Checkout() {
           <h3>Cafés selecionados</h3>
 
           <SelectedCoffeesList>
-            {coffeesCart.map((coffee) => (
-              <CoffeeCard
-                key={coffee.id}
-                id={coffee.id}
-                img={coffee.img}
-                name={coffee.name}
-                price={coffee.price}
-                quantity={coffee.quantity}
-              />
-            ))}
+            {isCoffeesCartEmpty ? (
+              <EmptyCoffeeList>
+                <SmileySad size={60} />
+                <p>Parece que você não adicionou um produto ainda</p>
+              </EmptyCoffeeList>
+            ) : (
+              coffeesCart.map((coffee) => (
+                <CoffeeCard
+                  key={coffee.id}
+                  id={coffee.id}
+                  img={coffee.img}
+                  name={coffee.name}
+                  price={coffee.price}
+                  quantity={coffee.quantity}
+                />
+              ))
+            )}
 
             <button type="submit" disabled={isSubmitDisable}>
               Confirmar pedido

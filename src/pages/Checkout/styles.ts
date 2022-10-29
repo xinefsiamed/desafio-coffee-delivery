@@ -153,3 +153,17 @@ export const SelectedCoffeesList = styled.div`
     }
   }
 `
+export const EmptyCoffeeList = styled.div`
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: center;
+  align-items: center;
+
+  opacity: 50%;
+
+  p {
+    margin-top: 2rem;
+  }
+`
