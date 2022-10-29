@@ -3,7 +3,10 @@ import { coffeesCartReducer, ICoffee } from '../reducers/Coffees/reducers'
 
 import {
   addNewProduct,
+  AddShipmentAmount,
   DecreaseOneFromProduct,
+  GetTotalAmount,
+  GetTotalOfProductsAmount,
   IncreaseOneFromProduct,
   RemoveCoffeeFromCart,
   TotalProductsInCart,
@@ -16,6 +19,9 @@ interface IInsertNewCoffeInCartData {
 interface ICoffeesType {
   coffeesCart: ICoffee[]
   productsInCart: number
+  totalOfProductsAmount: number
+  shippingPrice: number
+  totalAmount: number
 
   insertNewCoffeeInCart: (data: IInsertNewCoffeInCartData) => void
   decreaseOneFromCoffee: (id: number) => void
@@ -33,9 +39,18 @@ export function CoffeesContextProvider({ children }: ICoffeesContext) {
   const [coffeesCartState, dispatch] = useReducer(coffeesCartReducer, {
     coffeesCart: [],
     productsInCart: 0,
+    totalOfProductsAmount: 0,
+    shippingPrice: 0,
+    totalAmount: 0,
   })
 
-  const { coffeesCart, productsInCart } = coffeesCartState
+  const {
+    coffeesCart,
+    productsInCart,
+    totalOfProductsAmount,
+    shippingPrice,
+    totalAmount,
+  } = coffeesCartState
 
   useEffect(() => {
     if (coffeesCart.length !== 0) {
@@ -44,8 +59,14 @@ export function CoffeesContextProvider({ children }: ICoffeesContext) {
         .reduce((coffee, nextCoffee) => coffee + nextCoffee)
 
       dispatch(TotalProductsInCart(totalCoffeesAmount))
+      dispatch(GetTotalOfProductsAmount())
+      dispatch(AddShipmentAmount(3.5))
+      dispatch(GetTotalAmount())
     } else {
       dispatch(TotalProductsInCart(0))
+      dispatch(GetTotalOfProductsAmount())
+      dispatch(AddShipmentAmount(0))
+      dispatch(GetTotalAmount())
     }
   }, [coffeesCart])
 
@@ -72,6 +93,9 @@ export function CoffeesContextProvider({ children }: ICoffeesContext) {
       value={{
         coffeesCart,
         productsInCart,
+        totalOfProductsAmount,
+        shippingPrice,
+        totalAmount,
         insertNewCoffeeInCart,
         decreaseOneFromCoffee,
         increaseOneFromCoffee,

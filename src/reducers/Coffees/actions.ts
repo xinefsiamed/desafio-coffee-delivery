@@ -7,6 +7,9 @@ export enum ActionTypes {
   DECREASE_ONE_FROM_PRODUCT = 'DECREASE_ONE_FROM_PRODUCT',
   INCREASE_ONE_FROM_PRODUCT = 'INCREASE_ONE_FROM_PRODUCT',
   REMOVE_PRODUCT_FROM_CART = 'REMOVE_PRODUCT_FROM_CART',
+  GET_TOTAL_OF_PRODUCTS_AMOUNT = 'GET_TOTAL_OF_PRODUCTS_AMOUNT',
+  ADD_SHIPMENT_AMOUNT = 'ADD_SHIPMENT_AMOUNT',
+  GET_TOTAL_AMOUNT = 'GET_TOTAL_AMOUNT',
 }
 
 export function addNewProduct(newProduct: ICoffee) {
@@ -51,5 +54,26 @@ export function RemoveCoffeeFromCart(id: number) {
     payload: {
       id,
     },
+  }
+}
+
+export function GetTotalOfProductsAmount() {
+  return {
+    type: ActionTypes.GET_TOTAL_OF_PRODUCTS_AMOUNT,
+  }
+}
+
+export function AddShipmentAmount(price: number) {
+  return {
+    type: ActionTypes.ADD_SHIPMENT_AMOUNT,
+    payload: {
+      price,
+    },
+  }
+}
+
+export function GetTotalAmount() {
+  return {
+    type: ActionTypes.GET_TOTAL_AMOUNT,
   }
 }

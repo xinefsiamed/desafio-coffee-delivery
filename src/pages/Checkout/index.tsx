@@ -26,6 +26,7 @@ import {
 } from 'phosphor-react'
 import { FormInputs } from './components/FormInputs'
 import { CoffeeCard } from './components/CoffeeCard'
+import { TotalAmount } from './components/TotalAmount'
 
 const newShippingValidationForm = zod.object({
   cep: zod.number().min(8, 'Voce deve adicionar um cep válido'),
@@ -174,6 +175,8 @@ export function Checkout() {
                 />
               ))
             )}
+
+            <TotalAmount />
 
             <button type="submit" disabled={isSubmitDisable}>
               Confirmar pedido
