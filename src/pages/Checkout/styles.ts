@@ -20,6 +20,10 @@ export const FormContainer = styled.form`
   display: grid;
   grid-template-columns: 40rem 1fr;
   gap: 2rem;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
 `
 
 export const InputsContainer = styled.div`
@@ -75,6 +79,7 @@ export const PaymentMethodButtons = styled.div`
   button {
     padding: 1rem;
 
+    color: ${(props) => props.theme['base-text']};
     text-transform: uppercase;
     font-size: 0.75rem;
 
@@ -86,10 +91,10 @@ export const PaymentMethodButtons = styled.div`
     border-radius: 6px;
 
     background-color: ${(props) => props.theme['base-button']};
-
     transition: backgroud 0.2s;
 
     min-width: 11rem;
+    cursor: pointer;
 
     svg {
       color: ${(props) => props.theme.purple};
@@ -98,6 +103,11 @@ export const PaymentMethodButtons = styled.div`
     &:hover {
       background-color: ${(props) => props.theme['base-hover']};
     }
+  }
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 1rem;
   }
 `
 
@@ -108,6 +118,8 @@ export const SelectedCoffeesList = styled.div`
 
   display: flex;
   flex-direction: column;
+
+  gap: 1.25rem;
 
   background-color: ${(props) => props.theme['base-card']};
 
@@ -120,6 +132,7 @@ export const SelectedCoffeesList = styled.div`
     background-color: ${(props) => props.theme.yellow};
     color: ${(props) => props.theme.white};
 
+    font-size: 0.875rem;
     font-weight: 700;
     font-stretch: 100;
     line-height: 160%;
@@ -128,8 +141,15 @@ export const SelectedCoffeesList = styled.div`
 
     transition: all 0.1s;
 
+    cursor: pointer;
+
     &:hover {
       background-color: ${(props) => props.theme['yellow-dark']};
+    }
+
+    &:disabled {
+      opacity: 75%;
+      cursor: not-allowed;
     }
   }
 `

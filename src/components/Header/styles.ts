@@ -60,3 +60,27 @@ export const HeaderContainer = styled.div`
     }
   }
 `
+
+export const CounterProductsInCart = styled.span`
+  position: absolute;
+
+  width: 20px;
+  height: 20px;
+  margin-top: -35px;
+  margin-left: 35px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  overflow: hidden;
+
+  border-radius: 100%;
+  background-color: ${(props) => props.theme['yellow-dark']};
+
+  color: ${(props) => props.theme.white};
+
+  font-weight: 700;
+  font-size: 0.75rem;
+  line-height: 130%;
+`

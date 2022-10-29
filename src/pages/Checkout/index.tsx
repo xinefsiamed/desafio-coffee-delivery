@@ -23,6 +23,7 @@ import {
   Money,
 } from 'phosphor-react'
 import { FormInputs } from './components/FormInputs'
+import { CoffeeCard } from './components/CoffeeCard'
 
 const newShippingValidationForm = zod.object({
   cep: zod.number().min(8, 'Voce deve adicionar um cep válido'),
@@ -69,6 +70,21 @@ export function Checkout() {
 
     setValue('paymentMethod', value)
   }
+
+  const formsinput = watch([
+    'street',
+    'cep',
+    'number',
+    'city',
+    'uf',
+    'paymentMethod',
+  ])
+
+  const isSubmitDisable = !formsinput
+    .map((el) => Boolean(el))
+    .reduce((el, nextEl) => el && nextEl)
+
+  console.log(coffeesCart)
 
   return (
     <CheckoutContainer>
@@ -139,7 +155,20 @@ export function Checkout() {
           <h3>Cafés selecionados</h3>
 
           <SelectedCoffeesList>
-            <button type="submit">Confirmar pedido</button>
+            {coffeesCart.map((coffee) => (
+              <CoffeeCard
+                key={coffee.id}
+                id={coffee.id}
+                img={coffee.img}
+                name={coffee.name}
+                price={coffee.price}
+                quantity={coffee.quantity}
+              />
+            ))}
+
+            <button type="submit" disabled={isSubmitDisable}>
+              Confirmar pedido
+            </button>
           </SelectedCoffeesList>
         </aside>
       </FormContainer>

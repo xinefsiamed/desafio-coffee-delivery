@@ -8,6 +8,10 @@ export const Inputs = styled.div`
   justify-content: space-between;
 
   gap: 1rem 0.75rem;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
 `
 
 const BaseInput = styled.input`

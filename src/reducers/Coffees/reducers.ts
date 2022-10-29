@@ -11,6 +11,7 @@ export interface ICoffee {
 
 interface ICoffeesCartState {
   coffeesCart: ICoffee[]
+  productsInCart: number
 }
 
 export function coffeesCartReducer(state: ICoffeesCartState, action: any) {
@@ -29,6 +30,35 @@ export function coffeesCartReducer(state: ICoffeesCartState, action: any) {
         }
 
         draft.coffeesCart.push(action.payload.newProduct)
+      })
+
+    case ActionTypes.TOTAL_PRODUCTS_IN_CART:
+      return produce(state, (draft) => {
+        draft.productsInCart = action.payload.total
+      })
+
+    case ActionTypes.DECREASE_ONE_FROM_PRODUCT:
+      return produce(state, (draft) => {
+        const coffee = draft.coffeesCart.findIndex(
+          (coffee) => coffee.id === action.payload.id,
+        )
+
+        if (coffee > -1 && draft.coffeesCart[coffee].quantity > 1) {
+          draft.coffeesCart[coffee].quantity =
+            draft.coffeesCart[coffee].quantity - 1
+        }
+      })
+
+    case ActionTypes.INCREASE_ONE_FROM_PRODUCT:
+      return produce(state, (draft) => {
+        const coffee = draft.coffeesCart.findIndex(
+          (coffee) => coffee.id === action.payload.id,
+        )
+
+        if (coffee > -1) {
+          draft.coffeesCart[coffee].quantity =
+            draft.coffeesCart[coffee].quantity + 1
+        }
       })
 
     default:
